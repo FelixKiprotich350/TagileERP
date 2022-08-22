@@ -1,0 +1,114 @@
+﻿<Page x:Class="TagileERP.UserInterface.StudentsManagement.AdmissionBook"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TagileERP.UserInterface.StudentsManagement"
+      mc:Ignorable="d" 
+           Height="650" Width="1120"
+      Title="StudentsList" Loaded="Page_Loaded" >
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ComboBox">
+                <Setter Property="Width" Value="100"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="100"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <GroupBox Style="{x:Null}" Header="Apply Filters" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Margin="0">
+                    <Label Content="Programme"/>
+                    <ComboBox/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <Label Content="Study Level"/>
+                    <ComboBox>
+                        <ComboBoxItem Content="All"/>
+                        <ComboBoxItem Content="Diploma"/>
+                        <ComboBoxItem Content="Certificate"/>
+                        <ComboBoxItem Content="Artisan"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <Label Content="AdmIntake"/>
+                    <ComboBox/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <Label Content="YearofStudy"/>
+                    <ComboBox/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <Label Content="Status"/>
+                    <ComboBox/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                    <Label Content="Gender"/>
+                    <ComboBox/>
+                </StackPanel>
+                <StackPanel Margin="5,0,0,0">
+                    <Label Content="Students ID : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ComboBox x:Name="StdRegNo" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEditable="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
+                        <ComboBoxItem Content="All"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0">
+                    <Button x:Name="ButtonApply" Content="Apply"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="89" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="10,0,0,0" Click="ButtonApply_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <Grid Grid.Row="1">
+            <DataGrid  x:Name="StudentsListGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,5" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" BorderBrush="#FFC7C7C7" GridLinesVisibility="Horizontal" CanUserAddRows="False" Foreground="Black" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" BorderThickness="1,0,1,1" HorizontalContentAlignment="Center">
+               
+                <DataGrid.Columns>
+                    <DataGridTextColumn   Binding="{Binding AdmissionDbuid}"  Header="AdmDbuid" IsReadOnly="True" Visibility="Hidden"/>
+                    <DataGridTextColumn   Binding="{Binding AdmissionNumber}"  Header="RegistrationNumber" IsReadOnly="True"/>
+                    <DataGridTextColumn  Binding="{Binding FirstName}" Header="First Name" IsReadOnly="True"/>
+                                        <DataGridTextColumn  Binding="{Binding MiddleName}" Header="MiddleName"  IsReadOnly="True" MaxWidth="200"/>
+                                        <DataGridTextColumn  Binding="{Binding LastName}" Header="LastName"  IsReadOnly="True" MaxWidth="200"/>
+                    <DataGridTextColumn  Binding="{Binding Gender}" Header="Gender" IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding AdmDate, StringFormat='{}{0:dd/MM/yyyy}'}" Header="Adm Date"   IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding AdmIntake}" Header="AdmIntake"   IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding Programme}" Header="Programme"   IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding EnrolledClass}" Header="Enrolled Class"   IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding CurrentYearofStudy}" Header="YearofStudy"   IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding IsPWD}" Header="ISPWD"   IsReadOnly="True"/>
+                    <DataGridTextColumn   Binding="{Binding AcademicStatus}" Header="Session Status"   IsReadOnly="True"/> 
+
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Padding" Value="3" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <GroupBox Header="Summary" MinWidth="200">
+                    <StackPanel Orientation="Horizontal">
+                        <Label  Content="Total : " FontSize="16" FontWeight="Bold"/>
+                        <TextBox Name="Textbox_TotalStudents"   FontSize="16" FontWeight="Bold" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                    </StackPanel>
+                </GroupBox>
+                <Button Content="Export" />
+                <Button Content="Print" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,64 @@
+﻿<Page x:Class="TagileERP.UserInterface.AcademicExamination.ExaminationsList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TagileERP.UserInterface.AcademicExamination"
+      mc:Ignorable="d" 
+      Height="650"  Width="1120"
+      Title="ExaminationsList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Height="30" VerticalAlignment="Center" Margin="0,10,0,0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <TextBlock Text="Examination Management" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center"/>
+        </Grid>
+        <GroupBox Grid.Row="1" Style="{x:Null}" Header="Manage Exams" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="ButtonViewall"  Content="View All"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="120" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="20,0" Click="ButtonViewall_Click"  />
+                <Button x:Name="ButtonAddNewExam"  Content="Add Exam" Width="120" Height="30" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="40,0,0,0" Background="#FF076807"   VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonAddNewExam_Click"  />
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid Grid.Row="2" x:Name="Datagrid_ExaminationList" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,5" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" BorderBrush="#FFC7C7C7" GridLinesVisibility="Horizontal" CanUserAddRows="False" Foreground="Black" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" BorderThickness="1,0,1,1" HorizontalContentAlignment="Center"   VerticalContentAlignment="Stretch">
+
+            <DataGrid.Columns>
+                <!--<DataGridCheckBoxColumn x:Name="Select" Header="Select"  IsReadOnly="False"/>-->
+                <DataGridTextColumn Binding="{Binding Exam_dbuid}" Visibility="Hidden" Header="dbuid" IsReadOnly="True"/>
+                <DataGridTextColumn  Binding="{Binding ExamNo}" Header="ExamNo" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn Binding="{Binding ExamName}"  Header="Exam Name" IsReadOnly="True"  />
+                <DataGridTextColumn Binding="{Binding SessionName}"  Header="ForSession" IsReadOnly="True" Width="150"/>
+
+                <DataGridTextColumn  Binding="{Binding Startdate}" Header="Start Date" IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn  Binding="{Binding Enddate , StringFormat='{}{0:dd/MM/yyyy}'}" Width="150" Header="End Date" IsReadOnly="True" />
+                <DataGridTextColumn  Binding="{Binding MarkEntryStatus}" Header="MarkEntryStatus" IsReadOnly="True" />
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+        <Grid Grid.Row="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <GroupBox Header="Summary" MinWidth="200">
+                    <StackPanel Orientation="Horizontal">
+                        <Label  Content="Total : " FontSize="16" FontWeight="Bold"/>
+                        <TextBox Name="Textbox_TotalStudents"   FontSize="16" FontWeight="Bold" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" BorderBrush="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                    </StackPanel>
+                </GroupBox>
+                <Button Content="Export" />
+                <Button Content="Print" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,77 @@
+﻿<Window x:Class="TagileERP.UserInterface.AcademicExamination.PromoteEnrollmentClass"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TagileERP.UserInterface.AcademicExamination"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Promote Enrollment Class" Height="700" Width="1000">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="MaxDropDownHeight" Value="200"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions> 
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions> 
+        <GroupBox Grid.Row="0" Style="{x:Null}" Header="Search Classes" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="ButtonViewAllClasses"  Content="View All"  HorizontalAlignment="Center"  VerticalAlignment="Center" Width="120" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="20,0" Click="ButtonViewAllClasses_Click" />
+                <GroupBox Header="Filter By :">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Admission Intake"/>
+                            <ComboBox x:Name="Combobox_AdmissionIntake" Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Department "/>
+                            <ComboBox x:Name="Combobox_Department" Width="150"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="Study Level"/>
+                            <ComboBox x:Name="Combobox_StudyLevel" Width="150"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource DefaultAcceptButton}" Content="Apply" Margin="10,0"/>
+                    </StackPanel>
+                    
+                </GroupBox>
+                <Button x:Name="ButtonPromoteClasses"  Content="Promote Classes" Width="120" Height="30" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="50,0,0,0" Background="#FF076807"   VerticalAlignment="Center" HorizontalAlignment="Center" Click="ButtonPromoteClasses_Click"  />
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid Grid.Row="1" x:Name="Datagrid_ClassesList" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,5" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" BorderBrush="#FFC7C7C7" GridLinesVisibility="Horizontal" CanUserAddRows="False" Foreground="Black" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" BorderThickness="1,0,1,1" HorizontalContentAlignment="Center"   VerticalContentAlignment="Stretch" >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Class_Dbuid}" Visibility="Hidden" Header="dbuid" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn x:Name="Select" Header="Select"  Binding="{Binding IsSelected}" IsReadOnly="False">
+
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Binding="{Binding ClassName}"  Header="Class Name" IsReadOnly="True"  />
+                <DataGridTextColumn Binding="{Binding ClassAdmYear}"  Header="Adm Year" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn  Binding="{Binding Programme}" Header="Programme" IsReadOnly="True" Width="100"/>
+                <DataGridTextColumn  Binding="{Binding PreviouStudyLevel}" Header="Previous Level" IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn  Binding="{Binding CurrentStudyLevel}" Header="Current Level" IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn  Binding="{Binding ClassPromotionStatus}" Header="Promotion Status" IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn  Binding="{Binding PromotionDate , StringFormat='{}{0:dd/MM/yyyy}'}" Header="Promotion Date" IsReadOnly="True" />
+               
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Padding" Value="3" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,404 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TagileERP.UserInterface.StudentsManagement"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf" 
+    x:Class="TagileERP.UserInterface.StudentsManagement.NewStudent"
+      mc:Ignorable="d"  Loaded="Page_Loaded"
+           Height="650" Width="1120"
+      Title="New Student"  >
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style TargetType="TextBox">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="Height" Value="28"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="MaxDropDownHeight" Value="200"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFilledDatePicker}">
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+            </Style>
+            <Style TargetType="GroupBox"/>
+            <Style TargetType="TabItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Grid Name="Panel">
+                                <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                    <ContentPresenter x:Name="ContentSite" 
+                                    VerticalAlignment="Center" 
+                                    HorizontalAlignment="Center" 
+                                    ContentSource="Header" 
+                                    Margin="10,2"/>
+                                </Border>
+
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="LightGreen"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter TargetName="Border" Property="Background" Value="White" />
+                                </Trigger>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="LightBlue"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="900">
+            <Grid Height="30" VerticalAlignment="Center"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Margin="0,10,0,0">
+                <TextBlock Text="Add New Student" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center"/>
+            </Grid>
+
+            <TabControl Style="{x:Null}" Name="TabControl_AdmissionDetails" TabStripPlacement="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" BorderBrush="#FF8CBDE6" Margin="10,10,0,5" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" MinHeight="300" Height="500">
+
+                <TabItem Background="#00000000" Padding="0" Height="30">
+                    <TabItem.Header>
+                        <Label Content="Personal Details"/>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center">
+                                <StackPanel Visibility="Collapsed" Height="30" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Label Width="100" Content="Registration No: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBox Name="Textbox_RegNo" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper" UseLayoutRounding="False" HorizontalContentAlignment="Center"/>
+                                    <CheckBox Content="Auto" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                                </StackPanel>
+                                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="First Name : " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                        <TextBox x:Name="Textbox_Firstname"   HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper" UseLayoutRounding="False"/>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Label Width="100" Content="Middle Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_MiddleName"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper" UseLayoutRounding="False"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Last Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_Lastname"  VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Label Width="100" Content="National ID : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="TextBox_NationalID"   HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper" UseLayoutRounding="False" AutomationProperties.IsRequiredForForm="True"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Email Address : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_EmailAddress"   VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Label Width="100" Content="Telephone No: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_TelephoneNo"   VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Height="40"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                    <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Gender : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox Name="Combobox_Gender"  VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontWeight="Bold" HorizontalContentAlignment="Center" >
+                                            <ComboBoxItem IsSelected="True" Content="Male"/>
+                                            <ComboBoxItem Content="Female"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                                        <Label Width="100" Content="Date of Birth : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <DatePicker Width="200" x:Name="DatePicker_DOB" VerticalAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel  Height="40" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Nationality : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_Nationality"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
+                                            <ComboBoxItem IsSelected="True" Content="Kenya"/>
+                                            <ComboBoxItem  Content="Uganda"/>
+                                            <ComboBoxItem  Content="Rwanda"/>
+                                            <ComboBoxItem  Content="Tanzania"/>
+                                            <ComboBoxItem  Content="Sudan"/>
+                                            <ComboBoxItem  Content="Somalia"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                                        <Label Width="100" Content="Religion : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_Religion"  HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
+                                            <ComboBoxItem Content="Christian"/>
+                                            <ComboBoxItem Content="Hindu"/>
+                                            <ComboBoxItem Content="Muslim"/> 
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Height="40"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                    <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="County : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_County" VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontWeight="Bold" HorizontalContentAlignment="Center">
+                                            <ComboBoxItem IsSelected="True" Content="County"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                                        <Label Width="100" Content="Constituency : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_Subcounty"  VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontWeight="Bold" HorizontalContentAlignment="Center">
+                                            <ComboBoxItem IsSelected="True" Content="Subcounty"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Height="40" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                                    <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Ward : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_Ward" VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontWeight="Bold" HorizontalContentAlignment="Center">
+                                            <ComboBoxItem IsSelected="True" Content="My Ward"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                                        <Label Width="100" Content="Location : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_Location"   VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" FontWeight="Bold" HorizontalContentAlignment="Center">
+                                            <ComboBoxItem IsSelected="True" Content="Location"/>
+
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Height="40" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0" HorizontalAlignment="Center">
+                                    <StackPanel Height="40" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0" HorizontalAlignment="Left">
+                                        <Label Width="100" Content="Postal Address : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="TextBox_PostalAddress"   FontWeight="Bold" CharacterCasing="Upper" UseLayoutRounding="False" AutomationProperties.IsRequiredForForm="True" Margin="0"/>
+                                    </StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0" HorizontalAlignment="Left">
+                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <CheckBox x:Name="Checkbox_Ispwd" Width="200" Content="Is PWD" Margin="100,0,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </StackPanel>
+                            <Grid Grid.Column="1">
+                                <StackPanel Margin="0,5,0,0">
+                                    <StackPanel VerticalAlignment="Center" Margin="0,5,0,0" HorizontalAlignment="Center">
+                                        <Label Content="Students Image" HorizontalAlignment="Center" Margin="0,0,0,2"/>
+                                        <Border BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="1">
+                                            <Image x:Name="StdProfileImage" Height="150" Width="150" Stretch="Fill"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Margin="10,5,0,0" HorizontalAlignment="Center">
+                                        <Button x:Name="ButtonBrowseImage" Width="100" Content="Browse" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Click="ButtonBrowseImage_Click"/>
+                                        <Button x:Name="ButtonCapture" Width="100" Content="Capture" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Click="ButtonBrowseImage_Click"/>
+                                        <Button x:Name="ButtonRemoveImage" Style="{StaticResource DefaultCancelButton}" Width="100" Content="Remove" Margin="5,10,5,5" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FF6E1111" Click="ButtonRemoveImage_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem   Background="Gray" Padding="0" VerticalContentAlignment="Stretch" Height="30" Margin="0" HorizontalContentAlignment="Stretch">
+                    <TabItem.Header>
+                        <Label Content="Parents/Guardians"/>
+                    </TabItem.Header>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
+                        <GroupBox Header="Parents" Style="{x:Null}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Fathers Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_Fathersname" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Phone No : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_FathersPhone" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Occupation : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_FathersOccupation" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <CheckBox x:Name="Checkbox_IsfatherDeceased" Content="Is Deceased" Margin="100,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Separator/>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Mothers Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_Mothersname" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Phone No : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_MothersPhone" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Occupation : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_MothersOccupation" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <CheckBox x:Name="Checkbox_IsmotherDeceased" Content="Is Deceased" Margin="100,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Style="{x:Null}" Header="Guardian/Sponsor/Employee">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Full Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_Guardiansname" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Occupation : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_GuardianOccupation" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Phone No : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_GuardiansPhone" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Relationship : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_GuardiansRelationship" Width="200" VerticalAlignment="Center" FontWeight="Bold" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+
+                    </StackPanel>
+                </TabItem>
+                <TabItem   Background="Gray" Padding="2,0" VerticalContentAlignment="Stretch" Height="30" Margin="0">
+                    <TabItem.Header >
+                        <Border CornerRadius="4,4,0,0">
+                            <Label Content="Academic Details"/>
+                        </Border>
+                    </TabItem.Header>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <GroupBox Header="Enrollment Details">
+                            <StackPanel>
+                                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Label Width="100" Content="Admission Intake : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="Combobox_AdmissionIntake"  VerticalAlignment="Center" FontWeight="Bold" Margin="2,0,0,0" HorizontalContentAlignment="Center" MaxDropDownHeight="350" HorizontalAlignment="Center" SelectionChanged="Combobox_AdmissionIntake_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding IntakeName}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Height="55" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="100" Content="Programme : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox x:Name="Combobox_Programme" Width="470" VerticalAlignment="Center" FontWeight="Bold" Margin="2,0,0,0" HorizontalContentAlignment="Center" MaxDropDownHeight="350" HorizontalAlignment="Center" SelectionChanged="Combobox_Programme_SelectionChanged">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding ProgrammeName}"/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="120" Content="Programme Code : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_ProgrammeCode" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Label Width="120" Content="Study Mode : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_StudyMode" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="120" Content="Programme Award : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_ProgrammeAward" IsReadOnly="True" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                    </StackPanel>
+                                    <StackPanel   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Label Width="120" Content="Enrolled Class : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="Textbox_EnrolledClass" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" IsReadOnly="True"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                        <Label Width="120" Content="Transit to : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ComboBox  x:Name="Combobox_FirstyearofStudy" Width="200" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" BorderBrush="#FF7497E2">
+
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Label Width="120" Content="Admission Date : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <DatePicker  x:Name="Datepicker_AdmissionDate" Width="200" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" BorderBrush="#FF7497E2"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Previous Institutions Results">
+                            <StackPanel>
+                                <StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal">
+                                        <Label Content="Primary Shool" Width="100" VerticalAlignment="Center"/>
+                                        <TextBox CharacterCasing="Upper"/>
+                                        <Label Content="KCPE Grade" VerticalAlignment="Center"/>
+                                        <TextBox Width="100" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                    <StackPanel Height="40" Orientation="Horizontal">
+                                        <Label Content="Secondary Shool" Width="100" VerticalAlignment="Center"/>
+                                        <TextBox CharacterCasing="Upper"/>
+                                        <Label Content="KCSE Grade" VerticalAlignment="Center"/>
+                                        <TextBox Width="100" CharacterCasing="Upper"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                        </GroupBox>
+
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem   Background="Gray" Padding="0" VerticalContentAlignment="Stretch" Height="30" Margin="0">
+                    <TabItem.Header>
+                        <Label Content="Other Info"/>
+                    </TabItem.Header>
+                    <Image Source="/TagileERP;component/timesheet.ico" Height="150" Width="200" />
+                </TabItem>
+            </TabControl>
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <Button x:Name="Button_ClearForm" Style="{StaticResource DefaultCancelButton}" Content="Clear" Width="150" Margin="10,0"/>
+                    <Button x:Name="Button_SaveStudent" Style="{StaticResource DefaultAcceptButton}" Content="Save Student" Width="150" Click="Button_SaveStudent_Click" Margin="10,0" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</Page>

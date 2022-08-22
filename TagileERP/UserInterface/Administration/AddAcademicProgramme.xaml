@@ -1,0 +1,83 @@
+﻿<Window x:Class="TagileERP.UserInterface.Administration.AddAcademicProgramme"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TagileERP.UserInterface.Administration"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+         Title="Add Programme" Height="650" Width="500" ResizeMode="NoResize" 
+        Loaded="Window_Loaded">
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel   Orientation="Vertical" VerticalAlignment="Center">
+                    <Label Width="120" Content="Programme Code : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_Code" Width="100" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" CharacterCasing="Upper" HorizontalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <Label Width="120" Content="Programme Name : " VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_ProgrammeName"    VerticalAlignment="Center" FontWeight="Bold" Margin="2,0" BorderThickness="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" CharacterCasing="Upper" Width="300"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0">
+                <Label Width="120" Content="Department : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="Combobox_Department" Width="420" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DepartmentName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                               <StackPanel  Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                    <Label Width="120" Content="Programme Award : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="Combobox_Award" Width="150" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" SelectionChanged="Combobox_Award_SelectionChanged">
+                        <ComboBoxItem Content="Artisan"/>
+                        <ComboBoxItem Content="Certificate"/>
+                        <ComboBoxItem Content="Diploma"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel   Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                    <Label Width="120" Content="Study Mode : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="Combobox_CourseStudyMode" Width="150" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" SelectionChanged="Combobox_CourseStudyMode_SelectionChanged">
+                        <ComboBoxItem Content="Modular"/>
+                        <ComboBoxItem Content="Regular"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel   Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                    <Label Width="120" Content="Programme Status : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="Combobox_Status" Width="100" VerticalAlignment="Center" FontWeight="Bold" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                        <ComboBoxItem Content="Open"/>
+                        <ComboBoxItem Content="Closed"/>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>           
+        </StackPanel>
+        <GroupBox Grid.Row="1" Header="Subjects" >
+            <DataGrid Name="Datagrid_SubjectsList" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" Margin="2,0,-2,0">
+                <DataGrid.Columns> 
+                    <DataGridTextColumn Binding="{Binding SubjectCode}" Header="SCode"/>
+                    <DataGridTextColumn Binding="{Binding SubjectName}" Header="Subject Name" />
+                    <DataGridTextColumn Binding="{Binding StudyYear}" Header="StudyYear"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Del"/> 
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+            <Button x:Name="ButtonSelect" Content="Select" Margin="0,0,10,0" Width="80"   IsCancel="True" Click="ButtonSelect_Click" />
+            <Button x:Name="ButtonSave" Content="Save Programme" Margin="20,0,0,0" Width="150" Background="#007E33"  IsDefault="True" Click="ButtonSave_Click"  />
+        </StackPanel>
+    </Grid>
+</Window>

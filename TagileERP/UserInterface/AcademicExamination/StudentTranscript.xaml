@@ -1,0 +1,65 @@
+﻿<Page x:Class="TagileERP.UserInterface.AcademicExamination.StudentTranscript"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TagileERP.UserInterface.AcademicExamination"
+      mc:Ignorable="d" 
+       Height="650" Width="1120"
+      Title="StudentTranscript">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Center" Margin="0,10,0,0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <TextBlock Text="Mark Entry Students CheckList" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Height="30" VerticalAlignment="Center" Margin="0,10,0,0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" HorizontalAlignment="Center">
+                <TextBlock Text="Reg Number : " HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center"/>
+                <TextBox x:Name="Textbox_SearchRegNo" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center" Width="200" Margin="15,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button x:Name="Button_SearchStudent" Content="Search" Margin="5,0" />
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <GroupBox Header="Student Details" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Reg No:"/>
+                        <TextBox/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Full Name:"/>
+                        <TextBox/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Programme:"/>
+                        <TextBox/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="StudyYear:"/>
+                        <TextBox/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Results For:"/>
+                        <TextBox/>
+                    </StackPanel>
+                    
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            
+        </Grid>
+        <Grid Grid.Row="4">
+            <Button Content="Print" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Page>

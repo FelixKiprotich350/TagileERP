@@ -1,0 +1,121 @@
+﻿<Window x:Class="TagileERP.UserInterface.StudentsFeeManagement.ViewFeeStructureDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TagileERP.UserInterface.StudentsFeeManagement"
+        mc:Ignorable="d" Loaded="Window_Loaded" Title="ViewFeeStructureDetails" Height="550" Width="900"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
+    <Window.Resources>
+        <ResourceDictionary>
+            
+            <Style TargetType="TextBox"  BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Height="30" VerticalAlignment="Center"  Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+            <TextBlock Text="Fee Structure VoteHeads Details" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center"/>
+        </Grid>
+        <GroupBox  Grid.Row="1" Style="{x:Null}" Header="Fee Structure Details" HorizontalAlignment="Center" Padding="0" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" Width="150">
+                    <Label Content="Academic Year"/>
+                    <TextBox x:Name="Textbox_AcademicYear"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="250" Margin="10,0,0,0">
+                    <Label Content="Programme"/>
+                    <TextBox x:Name="Textbox_Programme"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="100" Margin="10,0,0,0">
+                    <Label Content="Year"/>
+                    <TextBox x:Name="Textbox_YearofStudy"/>
+                </StackPanel> 
+                <StackPanel Orientation="Vertical" Width="100" Margin="10,0,0,0">
+                    <Label Content="GOK"/>
+                    <TextBox x:Name="Textbox_GOKAmount"/>
+                </StackPanel>  
+                <StackPanel Orientation="Vertical" Width="100" Margin="10,0,0,0">
+                    <Label Content="Trainee"/>
+                    <TextBox x:Name="Textbox_TraineeAmount"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Width="100" Margin="10,0,0,0">
+                    <Label Content="Total"/>
+                    <TextBox x:Name="Textbox_TotalAmount"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox> 
+
+        <Grid Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/> 
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0" Style="{x:Null}" Header="Session 1 Voteheads">
+               
+                    <DataGrid x:Name="Session1_Datagrid"  AutoGenerateColumns="False" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <!--<DataGridCheckBoxColumn x:Name="Select" Header="Select"  IsReadOnly="False"/>-->
+                        <DataGridTextColumn Binding="{Binding Votehead_Dbuid}" Visibility="Hidden" Header="dbuid" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding VoteheadCode}"  Header="VH Code" IsReadOnly="True" Width="70"/>
+                        <DataGridTextColumn Binding="{Binding VoteheadName}"  Header="VoteHead Name" IsReadOnly="True" Width="200"/>
+                        <DataGridTextColumn  Binding="{Binding GOK_Amount}" Header="GOK" IsReadOnly="True" />
+                        <DataGridTextColumn  Binding="{Binding Trainee_Amount}" Header="Trainee" IsReadOnly="True" />
+                        <DataGridTextColumn  Binding="{Binding Total}" Header="Total" IsReadOnly="True"  />
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Padding" Value="3" />
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                
+            </GroupBox>
+            <GroupBox Grid.Column="1" Style="{x:Null}" Header="Session 2 Voteheads">
+                
+                    <DataGrid x:Name="Session2_Datagrid"  AutoGenerateColumns="False" Margin="5,0,0,0" IsReadOnly="True" >
+                    <DataGrid.Columns>
+                        <!--<DataGridCheckBoxColumn x:Name="Select" Header="Select"  IsReadOnly="False"/>-->
+                        <DataGridTextColumn Binding="{Binding Votehead_Dbuid}" Visibility="Hidden" Header="dbuid" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding VoteheadCode}"  Header="VH Code" IsReadOnly="True" Width="70"/>
+                        <DataGridTextColumn Binding="{Binding VoteheadName}"  Header="VoteHead Name" IsReadOnly="True" Width="200"/>
+                        <DataGridTextColumn  Binding="{Binding GOK_Amount}" Header="GOK" IsReadOnly="True" />
+                        <DataGridTextColumn  Binding="{Binding Trainee_Amount}" Header="Trainee" IsReadOnly="True" />
+                        <DataGridTextColumn  Binding="{Binding Total}" Header="Total" IsReadOnly="True"  />
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                            <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Padding" Value="3" />
+                                <Setter Property="FontSize" Value="12" />
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+               
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="3" HorizontalAlignment="Center" Width="100" Background="#00000000">
+            <Button Content="Close" Background="#FF055911"/>
+        </Grid>
+    </Grid>
+</Window>

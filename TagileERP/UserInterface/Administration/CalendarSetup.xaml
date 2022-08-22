@@ -1,0 +1,164 @@
+﻿<Page x:Class="TagileERP.UserInterface.Administration.CalendarSetup"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TagileERP.UserInterface.Administration"
+      mc:Ignorable="d" Width="1120" Height="650" Loaded="Page_Loaded"
+      Background="#00000000" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style TargetType="GroupBox" />
+            <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+          
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid  Height="650" >
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Height="640">
+            <Grid Height="30" VerticalAlignment="Center" Margin="0,10,0,0" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+                <TextBlock Text="Enrollment Intakes and Sessions Management" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" FontFamily="MS Reference Sans Serif" Foreground="Indigo" VerticalAlignment="Center"/>
+            </Grid>
+            <TabControl x:Name="CalendarTabcontrol" Style="{x:Null}" VerticalContentAlignment="Top" MinHeight="500" Width="1000" SelectionChanged="CalendarTabcontrol_SelectionChanged"  >
+                <TabItem  Header="Intakes" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch"  >
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <GroupBox Style="{x:Null}" Header="Search Box" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Label Content="Academic Year : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBox x:Name="TextBox_AcademicYear"  Height="32"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" TextChanged="TextBox_AcademicYear_TextChanged" />
+                                    <Button x:Name="Button_ViewAll_AcademicYears" Content="View All"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="89" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="30,0,0,0" Background="#aa66cc" Click="Button_ViewAll_AcademicYears_Click"/>
+                                    
+                                </StackPanel>
+                                
+                            </GroupBox>
+
+                            <Button x:Name="ButtonAddNewIntake"  Content="Add AcademicYear" Width="150" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="30,15,0,0" Background="#FF076807" Click="ButtonAddNewIntake_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                         
+                        </StackPanel>
+                        <DataGrid Height="450"  x:Name="Datagrid_AcademicyearsList" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,5" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" BorderBrush="#FFC7C7C7" GridLinesVisibility="Horizontal" CanUserAddRows="False" Foreground="Black" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" BorderThickness="1,0,1,1" HorizontalContentAlignment="Center">
+
+                            <DataGrid.Columns>
+                                <!--<DataGridCheckBoxColumn x:Name="Select" Header="Select"  IsReadOnly="False"/>-->
+                                <DataGridTextColumn Visibility="Hidden" Binding="{Binding AcademicYear_dbuid}"  Header="Dbuid" IsReadOnly="True" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding AdmissionYear}"  Header="Adm Year" IsReadOnly="True" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding IntakeName}"  Header="Adm Intake" IsReadOnly="True" Width="150"/>
+                                <DataGridTextColumn  Binding="{Binding Startdate , StringFormat='{}{0:dd/MM/yyyy}'}" Header="StartDate" IsReadOnly="True" Width="150"/>
+                                <DataGridTextColumn   Binding="{Binding Enddate , StringFormat='{}{0:dd/MM/yyyy}'}" Header="EndDate" IsReadOnly="True" Width="150"/>
+                                <DataGridTextColumn  Binding="{Binding RegistrationDate , StringFormat='{}{0:dd/MM/yyyy}'}" Header="RegistrationDate" IsReadOnly="True" Width="150"/>
+                                <DataGridTextColumn  Binding="{Binding IsActiveYear}" Header="IsActive"  IsReadOnly="True" MaxWidth="200" Width="100"/>
+                                <DataGridTextColumn   Binding="{Binding Description}" Header="Description"  IsReadOnly="True" Width="200"/>
+
+
+                            </DataGrid.Columns>
+                            <DataGrid.Resources>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Padding" Value="3" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </DataGrid.Resources>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem   Header="Sessions" Background="#FF000CFF" Height="20" VerticalAlignment="Top" >
+                    <StackPanel Orientation="Vertical" ScrollViewer.CanContentScroll="True">
+                        <GroupBox Style="{x:Null}" Header="Search Box" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Academic Year : " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="Session_AcademicYearTextbox" Height="32"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Margin="5,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextChanged="Session_AcademicYearTextbox_TextChanged" BorderBrush="Black" BorderThickness="1"  />
+                                <Button x:Name="ButtonViewAllSessions"  Content="View All"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="89" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="30,0,0,0" Background="#aa66cc" Click="ButtonViewAllSessions_Click" />
+                                <Button x:Name="ButtonAddNewSession"  Content="Add Session"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Height="32" Cursor="Hand" FontFamily="Tw Cen MT" BorderThickness="1" FontWeight="Normal" Margin="50,0,0,0" Background="#FF076807" Click="ButtonAddNewSession_Click"  />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <DataGrid x:Name="Datagrid_SessionsList" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="10,5" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionMode="Single" BorderBrush="#FFC7C7C7" GridLinesVisibility="Horizontal" CanUserAddRows="False" Foreground="Black" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" BorderThickness="1,0,1,1" HorizontalContentAlignment="Center" Height="450" VerticalContentAlignment="Stretch" MouseDoubleClick="Datagrid_SessionsList_MouseDoubleClick">
+
+                            <DataGrid.Columns>
+                                <!--<DataGridCheckBoxColumn x:Name="Select" Header="Select"  IsReadOnly="False"/>-->
+                                <DataGridTextColumn Binding="{Binding Session_dbuid}" Visibility="Hidden" Header="dbuid" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding Year}"  Header="Year" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding SessionFullName}"  Header="Session" IsReadOnly="True"/>
+                                <DataGridTextColumn  Binding="{Binding Startdate , StringFormat='{}{0:dd/MM/yyyy}'}" Header="StartDate" IsReadOnly="True"/>
+                                <DataGridTextColumn  Binding="{Binding Enddate , StringFormat='{}{0:dd/MM/yyyy}'}" Header="EndDate" IsReadOnly="True"/>
+                                <DataGridTextColumn  Binding="{Binding DatePosted , StringFormat='{}{0:dd/MM/yyyy}'}" Header="DatePosted" IsReadOnly="True"/>
+                                <DataGridTextColumn  Binding="{Binding IsCurrentSession}" Header="IsCurrent"  IsReadOnly="True" />
+                                <DataGridTextColumn  Binding="{Binding ReportingStatus}" Header="ReportingStatus"  IsReadOnly="True"/>
+
+
+                            </DataGrid.Columns>
+                            <DataGrid.Resources>
+                                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Padding" Value="3" />
+                                    <Setter Property="FontSize" Value="12" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </DataGrid.Resources>
+                        </DataGrid>
+                    </StackPanel>
+                </TabItem>
+                <TabItem x:Name="SettingsTabItem" Header="Settings">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+                        
+                        <GroupBox Style="{x:Null}" Header="Select the Current Session">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <Label Content="Academic Year" HorizontalAlignment="Center"/>
+                                        <ComboBox  x:Name="Combobox_SessionAcademicYear" HorizontalAlignment="Center" Width="150" SelectionChanged="Combobox_SessionAcademicYear_SelectionChanged"   />
+
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <Label Content="Sessions" Width="100" HorizontalAlignment="Center"/>
+                                        <ComboBox Name="Combobox_Sessions" Width="120" Margin="10,0,0,0" >
+                                            <!--<ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock/>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>-->
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                                <Grid HorizontalAlignment="Center">
+                                    <Button x:Name="Button_SetActiveSession" Content="Set Active Session" Margin="0,10,0,0" Background="DarkOliveGreen" Click="Button_SetActiveSession_Click"/>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </TabItem>
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Grid Name="Panel">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Panel" Property="Background" Value="LightSkyBlue" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Panel" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</Page>

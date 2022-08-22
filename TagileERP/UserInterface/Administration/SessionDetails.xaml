@@ -1,0 +1,80 @@
+﻿<Window x:Class="TagileERP.UserInterface.Administration.SessionDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TagileERP.UserInterface.Administration"
+        mc:Ignorable="d" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Title="Session Details" Height="550" Width="400" ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
+         >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Session Details" Width="350" Padding="0" Margin="0"  BorderThickness="2" FontSize="14" Foreground="Black" VerticalAlignment="Center" >
+            <StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="Session Full-Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_SessionFullname" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="Short Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_ShortName" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="Year : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_Year" Width="200" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="StartDate : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_Startdate" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="EndDate : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_Enddate" Width="200" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="IsCurrentSession : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_Iscurrentsession" Width="200" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label Width="120" Content="Reporting Status : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="Textbox_ReportingStatus" Width="200" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Row="1" Width="350" Header="Change Status" FontSize="14" Foreground="Black" BorderThickness="2" Margin="0,0,0,5">
+            <StackPanel >
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <GroupBox x:Name="Groupbox_IscurrentSession">
+                        <StackPanel   Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                            <Label Width="120" Content="IsCurrent Session : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="Combobox_IscurrentStatus" Width="150" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True">
+                                <ComboBoxItem Content="true"/>
+                                <ComboBoxItem Content="false"/>
+                            </ComboBox>
+                            <Button x:Name="Button_SetCurrentSession" Width="100" VerticalAlignment="Center" FontWeight="Bold" Content="Save" Background="#FF069119" Margin="0,10,0,0" Click="Button_SetCurrentSession_Click" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox  x:Name="Groupbox_ReportingStatus" Visibility="Collapsed">
+                        <StackPanel   Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <Label Width="120" Content="Reporting Status : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="Combobox_ReportingStatus" Width="150" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True">
+                                <ComboBoxItem Content="Open"/>
+                                <ComboBoxItem Content="Closed"/>
+                            </ComboBox>
+                            <Button x:Name="Button_ChangeReportingStatus" Width="100" VerticalAlignment="Center" FontWeight="Bold" Content="Save" Background="#FF069119" Margin="0,10,0,0" Click="Button_ChangeReportingStatus_Click"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+                        
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

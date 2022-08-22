@@ -1,0 +1,45 @@
+﻿<Window x:Class="TagileERP.UserInterface.Administration.AddSession"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TagileERP.UserInterface.Administration"
+     mc:Ignorable="d" Topmost="True" Loaded="Window_Loaded"
+        Title="New Session" Height="320" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Width="120" Content="Admission Year : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="ComboboxAdmissionyear" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" IsEditable="True"/>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Width="120" Content="Session Name : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="Combobox_SessionName"  Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">
+                    <ComboBoxItem Content="Term 1"/>
+                    <ComboBoxItem Content="Term 2"/>
+                    <ComboBoxItem Content="Term 3"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Width="120" Content="From date : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <DatePicker x:Name="FromDate"  Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Width="120" Content="To Date : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <DatePicker x:Name="ToDate" Width="200" VerticalAlignment="Center" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Width="120" Content="Session Status: " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="Textbox_SessionStatus" Text="Inactive" Width="200" VerticalAlignment="Center" FontWeight="Bold" IsReadOnly="True"/>
+            </StackPanel>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Label Width="120" Content="Description : " HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox  x:Name="Description" Width="200" VerticalAlignment="Center" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button x:Name="ButtonClose" Content="Close" Margin="0,0,10,0" Width="80" Background="#FF723A13" Click="ButtonClose_Click"/>
+                <Button x:Name="ButtonSave" Content="Save Session" Margin="20,0,0,0" Width="150" Background="#007E33" Click="ButtonSave_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
